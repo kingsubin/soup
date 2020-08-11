@@ -1,6 +1,7 @@
 package me.soob.springbootwebservice.domain.like;
 
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.soob.springbootwebservice.domain.comment.Comment;
@@ -33,4 +34,13 @@ public class Like {
 
     @Enumerated(EnumType.STRING)
     private LikeType likeType;
+
+    // 빌더
+//    @Builder
+//    public Like(Member member, Posts posts_id, Comment comment_id, LikeType likeType) {
+//        this.member = member;
+//        this.posts = posts;
+//        this.comment = comment;
+//        this.likeType = likeType;
+//    }
 }

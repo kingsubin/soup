@@ -41,10 +41,10 @@ public class Posts extends BaseTimeEntity {
     private Member member;
 
     @OneToMany(mappedBy = "posts", cascade = CascadeType.ALL)
-    private List<Comment> comments = new ArrayList<Comment>();
+    private List<Comment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "posts", cascade = CascadeType.ALL)
-    private List<Like> likes = new ArrayList<Like>();
+    private List<Like> likes = new ArrayList<>();
 
     // 빌더
     @Builder
@@ -55,10 +55,14 @@ public class Posts extends BaseTimeEntity {
         this.member = member;
     }
 
+    // == 연관관계 메소드 ==
+
+    // == 비즈니스 로직 ==
     // 게시글 수정
-    public void update(String title, String content) {
+    public Posts update(String title, String content) {
         this.title = title;
         this.content = content;
+        return this;
     }
 
 }

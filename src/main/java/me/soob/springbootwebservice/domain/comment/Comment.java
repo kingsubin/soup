@@ -43,9 +43,11 @@ public class Comment extends BaseTimeEntity {
         this.member = member;
     }
 
+    // == 비즈니스 로직 ==
     // 댓글 수정
-    public void update(String comment) {
+    public Comment update(String comment) {
         this.comment = comment;
+        return this;
     }
 
 }

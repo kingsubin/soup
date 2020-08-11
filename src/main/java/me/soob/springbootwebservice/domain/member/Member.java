@@ -34,7 +34,7 @@ public class Member extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
 
-    // 빌더
+    //== 빌더 ==
     @Builder
     public Member(String email, String password, String name, String picture) {
         this.email = email;
@@ -43,6 +43,7 @@ public class Member extends BaseTimeEntity {
         this.picture = picture;
     }
 
+    //== 비즈니스 로직 ==
     // 회원 정보 수정
     public void update(String picture, String name) {
         this.picture = picture;
