@@ -1,46 +1,51 @@
 package me.soob.springbootwebservice.domain.member;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.soob.springbootwebservice.domain.BaseTimeEntity;
-import me.soob.springbootwebservice.domain.posts.Posts;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Member extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_id")
     private Long id;
 
-    @OneToMany(mappedBy = "member")
-    private List<Posts> Posts = new ArrayList<Posts>();
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false, unique = true)
+    private String name;
+
+    private String picture;
+    private int levelPoint;
+    private int cashPoint;
+    private int level;
 
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
 
-    @Column(length = 30, nullable = false)
-    private String email;
-
-    @Column(length = 30, nullable = false)
-    private String password;
-
-    @Column(length = 30, nullable = false)
-    private String name;
-
-    private int cp;
-    private int lp;
-    private int level;
-
+    // 빌더
     @Builder
-    public Member(String email, String password, String name) {
+    public Member(String email, String password, String name, String picture) {
         this.email = email;
         this.password = password;
+        this.name = name;
+        this.picture = picture;
+    }
+
+    // 회원 정보 수정
+    public void update(String picture, String name) {
+        this.picture = picture;
         this.name = name;
     }
 
