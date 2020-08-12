@@ -48,21 +48,22 @@ public class Posts extends BaseTimeEntity {
 
     // 빌더
     @Builder
-    public Posts(String title, String content, String file, Member member) {
+    public Posts(String title, String content, Member member, String file, PostType postType) {
         this.title = title;
         this.content = content;
-        this.file = file;
         this.member = member;
+        this.file = file;
+        this.postType = postType;
     }
 
-    // == 연관관계 메소드 ==
+    // == 연관관계 편의 ==
 
     // == 비즈니스 로직 ==
     // 게시글 수정
-    public Posts update(String title, String content) {
+    public void update(String title, String content, String file) {
         this.title = title;
         this.content = content;
-        return this;
+        this.file = file;
     }
 
 }

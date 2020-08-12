@@ -38,16 +38,16 @@ public class Comment extends BaseTimeEntity {
 
     // 빌더
     @Builder
-    public Comment(String comment, Member member) {
+    public Comment(String comment, Member member, Posts posts) {
         this.comment = comment;
         this.member = member;
+        this.posts = posts;
     }
 
     // == 비즈니스 로직 ==
     // 댓글 수정
-    public Comment update(String comment) {
+    public void update(String comment) {
         this.comment = comment;
-        return this;
     }
 
 }

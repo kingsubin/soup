@@ -31,9 +31,6 @@ public class Member extends BaseTimeEntity {
     private int cashPoint;
     private int level;
 
-    @Enumerated(EnumType.STRING)
-    private RoleType roleType;
-
     //== 빌더 ==
     @Builder
     public Member(String email, String password, String name, String picture) {
@@ -45,9 +42,30 @@ public class Member extends BaseTimeEntity {
 
     //== 비즈니스 로직 ==
     // 회원 정보 수정
-    public void update(String picture, String name) {
-        this.picture = picture;
+    public void update(String name, String picture, String password) {
         this.name = name;
+        this.picture = picture;
+        this.password = password;
+    }
+
+    // 게시글 작성시 levelPoint 증가
+    public void plusPostsLevelPoint(int levelPoint) {
+        this.levelPoint += levelPoint;
+    }
+
+    // 게시글 삭제시 levelPoint 감소
+    public void minusPostsLevelPoint(int levelPoint) {
+        this.levelPoint -= levelPoint;
+    }
+
+    // 댓글 작성시 levelPoint 10 고정 증가
+    public void plusCommentLevelPoint() {
+        this.levelPoint += 10;
+    }
+
+    // 댓글 삭제 levelPoint 10 감소
+    public void minusCommentLevelPoint() {
+        this.levelPoint -= 10;
     }
 
 }
