@@ -7,13 +7,11 @@ import lombok.Getter;
 public class MemberUpdateReqeustDto {
 
     private String name;
-    private String picture;
     private String password;
 
     @Builder
-    public MemberUpdateReqeustDto(String name, String picture, String password) {
+    public MemberUpdateReqeustDto(String name, String password) {
         this.name = name;
-        this.picture = picture;
         this.password = password;
     }
 

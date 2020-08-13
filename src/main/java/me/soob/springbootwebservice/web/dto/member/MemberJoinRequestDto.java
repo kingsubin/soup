@@ -10,14 +10,12 @@ public class MemberJoinRequestDto {
     private String email;
     private String password;
     private String name;
-    private String picture;
 
     @Builder
-    public MemberJoinRequestDto(String email, String password, String name, String picture) {
+    public MemberJoinRequestDto(String email, String password, String name) {
         this.email = email;
         this.password = password;
         this.name = name;
-        this.picture = picture;
     }
 
     public Member toEntity() {
@@ -25,7 +23,6 @@ public class MemberJoinRequestDto {
                 .email(email)
                 .password(password)
                 .name(name)
-                .picture(picture)
                 .build();
     }
 

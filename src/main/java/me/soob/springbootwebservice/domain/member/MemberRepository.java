@@ -11,4 +11,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     @Query("SELECT m FROM Member m ORDER BY m.id DESC")
     List<Member> findAllDesc();
+
+
 }

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import me.soob.springbootwebservice.domain.member.Member;
 import me.soob.springbootwebservice.domain.member.MemberRepository;
 import me.soob.springbootwebservice.web.dto.member.MemberJoinRequestDto;
+import me.soob.springbootwebservice.web.dto.member.MemberLoginRequestDto;
 import me.soob.springbootwebservice.web.dto.member.MemberResponseDto;
 import me.soob.springbootwebservice.web.dto.member.MemberUpdateReqeustDto;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,11 @@ public class MemberService {
         return memberRepository.save(memberDto.toEntity()).getId();
     }
 
+    /**
+     * 멤버 로그인
+     * email, password 확인후 진행
+     */
+
 
     /**
      * 멤버 정보 수정
@@ -38,7 +44,7 @@ public class MemberService {
     public Long update(Long memberId, MemberUpdateReqeustDto memberDto) {
         Member findMember = memberRepository.findById(memberId)
                 .orElseThrow(() -> new IllegalArgumentException("해당 회원이 없습니다. id =" + memberId));
-        findMember.update(memberDto.getName(), memberDto.getPicture(), memberDto.getPassword());
+        findMember.update(memberDto.getName(),memberDto.getPassword());
 
         return memberId;
     }
