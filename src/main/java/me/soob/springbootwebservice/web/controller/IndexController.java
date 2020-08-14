@@ -5,10 +5,13 @@ import me.soob.springbootwebservice.service.MemberService;
 import me.soob.springbootwebservice.service.PostsService;
 import me.soob.springbootwebservice.web.dto.member.MemberResponseDto;
 import me.soob.springbootwebservice.web.dto.posts.PostsResponseDto;
+import me.soob.springbootwebservice.web.dto.posts.PostsWriteRequestDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -62,7 +65,8 @@ public class IndexController {
 
     // 게시글 저장
     @GetMapping("/posts/save")
-    public String postSave() {
+    public String postSave(Model model) {
+        model.addAttribute("requestDto", new PostsWriteRequestDto());
         return "/posts/save";
     }
 
@@ -74,5 +78,24 @@ public class IndexController {
 
         return "/posts/update";
     }
+
+    // 게시글 조회
+    @GetMapping("/posts/list/{id}")
+    public String postsView(@PathVariable Long id, Model model) {
+        PostsResponseDto dto = postsService.findOne(id);
+        model.addAttribute("post", dto);
+
+        return "/posts/view";
+    }
+
+    // 게시글 전체 조회
+    @GetMapping("/posts/list")
+    public String postsList(Model model) {
+        List<PostsResponseDto> postsList = postsService.findAllDesc();
+        model.addAttribute("postsList", postsList);
+
+        return "/posts/list";
+    }
+
 
 }

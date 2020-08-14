@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import me.soob.springbootwebservice.domain.member.Member;
 import me.soob.springbootwebservice.domain.member.MemberRepository;
 import me.soob.springbootwebservice.web.dto.member.MemberJoinRequestDto;
-import me.soob.springbootwebservice.web.dto.member.MemberLoginRequestDto;
 import me.soob.springbootwebservice.web.dto.member.MemberResponseDto;
 import me.soob.springbootwebservice.web.dto.member.MemberUpdateReqeustDto;
 import org.springframework.stereotype.Service;

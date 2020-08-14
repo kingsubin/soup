@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/common :: head">
+</head>
+
+<body>
+
+<!-- nav menu -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu">
+</nav>
+
+<!-- container -->
+<div class="container">
+    <div> 게시글 수 : <span th:text="${#lists.size(postsList)}"></span> </div>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">번호</th>
+            <th scope="col">제목</th>
+            <th scope="col">댓글</th>
+            <th scope="col">작성자</th>
+            <th scope="col">조회수</th>
+            <th scope="col">좋아요</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="posts : ${postsList}">
+            <th th:text="${posts.id}"></th>
+            <td><a th:href="@{/posts/list/(id=${posts.id})}" th:text="${posts.title}"></a></td>
+            <td th:text="${posts.comments.size()}"></td>
+            <td th:text="${posts.member.getName()}"></td>
+            <td th:text="${posts.readCount}"></td>
+            <td th:text="${posts.likes.size()}"></td>c
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="text-right">
+        <a type="button" class="btn btn-primary" th:href="@{/posts/save}">작성하기</a>
+    </div>
+</div>
+
+
+<!-- footer -->
+<div class="footer" th:replace="fragments/common :: footer"></div>
+
+</body>
+</html>

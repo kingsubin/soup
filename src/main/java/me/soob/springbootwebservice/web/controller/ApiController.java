@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import me.soob.springbootwebservice.service.MemberService;
 import me.soob.springbootwebservice.service.PostsService;
 import me.soob.springbootwebservice.web.dto.member.MemberJoinRequestDto;
+import me.soob.springbootwebservice.web.dto.posts.PostsWriteRequestDto;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
@@ -19,12 +20,15 @@ public class ApiController {
         return memberService.join(requestDto);
     }
 
+    // 게시글 작성
+    @PostMapping("/api/posts/save")
+    public String save(@ModelAttribute PostsWriteRequestDto requestDto) {
+        postsService.postsWrite(requestDto);
+        return "redirect:/posts/list";
+    }
 
-//    @PostMapping("/api/v1/posts")
-//    public Long save(@RequestBody PostsSaveRequestDto requestDto) {
-//        return postsService.save(requestDto);
-//    }
 //
+//    // 게시글 수정
 //    @PutMapping("/api/v1/posts/{id}")
 //    public Long update(@PathVariable Long id, @RequestBody PostsUpdateRequestDto requestDto) {
 //        return postsService.update(id, requestDto);

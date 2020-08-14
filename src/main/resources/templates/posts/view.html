@@ -11,8 +11,7 @@
 
 <!-- container -->
 <div class="container">
-    <form action="" th:action="@{/api/posts/save}" th:object="${requestDto}" method="post">
-<!--        <input type="hidden" th:field="*{postType}" th:value="${me.soob.springbootwebservice.domain.posts.PostType.INFO_STUDY}">-->
+    <form action="" th:action="@{/api/posts/save}" th:object="${post}" method="post">
         <div class="form-group">
             <label th:for="*{member}">AUTHOR</label>
             <input type="text" class="form-control" th:field="*{member}">

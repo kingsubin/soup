@@ -2,10 +2,12 @@ package me.soob.springbootwebservice.web.dto.posts;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import me.soob.springbootwebservice.domain.member.Member;
 import me.soob.springbootwebservice.domain.posts.PostType;
 import me.soob.springbootwebservice.domain.posts.Posts;
 
+@NoArgsConstructor
 @Getter
 public class PostsWriteRequestDto {
 

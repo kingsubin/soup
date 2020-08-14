@@ -1,5 +1,8 @@
 package me.soob.springbootwebservice.domain.posts;
 
+import lombok.Getter;
+
+@Getter
 public enum PostType {
     // 정보
     INFO_STUDY, INFO_JOB,

@@ -46,6 +46,14 @@ public class Posts extends BaseTimeEntity {
     @OneToMany(mappedBy = "posts", cascade = CascadeType.ALL)
     private List<Like> likes = new ArrayList<>();
 
+    /**
+     * TEST - 디비에 영향을 미치지 않고, 카운팅하기에 도움이 되는지 나중에 확인
+     * @Transient
+     * private int commentCount;
+     * @Transient
+     * private int likeCount;
+     */
+
     // 빌더
     @Builder
     public Posts(String title, String content, Member member, String file, PostType postType) {
