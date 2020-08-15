@@ -26,4 +26,9 @@ public class MemberJoinRequestDto {
                 .build();
     }
 
+    // password encode를 위한 set method
+    public void encodePassword(String password) {
+        this.password = password;
+    }
+
 }
