@@ -2,8 +2,10 @@ package me.soob.springbootwebservice.web.dto.member;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import me.soob.springbootwebservice.domain.member.Member;
 
+@NoArgsConstructor
 @Getter
 public class MemberJoinRequestDto {
 
