@@ -18,7 +18,6 @@ var main = {
             email: $('#email').val(),
             password: $('#password').val(),
             name: $('#name').val(),
-            picture: $('#picture').val()
         };
 
         $.ajax({

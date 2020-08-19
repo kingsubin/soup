@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+@RequestMapping("/posts")
 @RequiredArgsConstructor
 @Controller
 public class PostsController {
@@ -18,7 +20,7 @@ public class PostsController {
     private final PostsService postsService;
 
     // 게시글 저장 GET
-    @GetMapping("/posts/save")
+    @GetMapping("/save")
     public String postSave(Model model) {
         model.addAttribute("postsWriteRequestDto", new PostsWriteRequestDto());
 
@@ -26,13 +28,15 @@ public class PostsController {
     }
 
     // 게시글 저장 POST
-    @PostMapping("/posts/save")
-    public Long postSave(@RequestBody PostsWriteRequestDto postsWriteRequestDto) {
-        return postsService.postsWrite(postsWriteRequestDto);
+    @PostMapping("/save")
+    public String postSave(PostsWriteRequestDto postsWriteRequestDto) {
+        Long id = postsService.postsWrite(postsWriteRequestDto);
+
+        return "/posts/list/" + id;
     }
 
     // 게시글 전체 조회
-    @GetMapping("/posts/list")
+    @GetMapping("/list")
     public String postsList(Model model) {
         List<PostsResponseDto> postsList = postsService.findAllDesc();
         model.addAttribute("postsList", postsList);
@@ -41,7 +45,7 @@ public class PostsController {
     }
 
     // 게시글 조회 GET
-    @GetMapping("/posts/list/{id}")
+    @GetMapping("/list/{id}")
     public String postView(@PathVariable Long id, Model model) {
         PostsResponseDto postsResponseDto = postsService.findOne(id);
         model.addAttribute("postsResponseDto", postsResponseDto);
@@ -50,26 +54,28 @@ public class PostsController {
     }
 
     // 게시글 수정 GET
-    @GetMapping("/posts/list/update/{id}")
+    @GetMapping("/list/update/{id}")
     public String postsUpdate(@PathVariable Long id, Model model) {
-        PostsResponseDto dto = postsService.findOne(id);
-        model.addAttribute("post", dto);
+        PostsResponseDto postsResponseDto = postsService.findOne(id);
+        model.addAttribute("postsResponseDto", postsResponseDto);
 
         return "/posts/update";
     }
 
     // 게시글 수정 PUT
-    @PutMapping("/posts/list/update/{id}")
-    public Long postsUpdate(@PathVariable Long id, @RequestBody PostsUpdateRequestDto postsUpdateRequestDto) {
-        return postsService.postUpdate(id, postsUpdateRequestDto);
+    @PutMapping("/list/update/{id}")
+    public String postsUpdate(@PathVariable Long id, PostsUpdateRequestDto postsUpdateRequestDto) {
+        postsService.postUpdate(id, postsUpdateRequestDto);
+
+        return "/posts/list/" + id;
     }
 
     // 게시글 삭제 DELETE
-    @DeleteMapping("/posts/list/update/{id}")
-    public Long postsDelete(@PathVariable Long id) {
+    @DeleteMapping("/list/update/{id}")
+    public String postsDelete(@PathVariable Long id) {
         postsService.postsDelete(id);
 
-        return id;
+        return "redirect:/";
     }
 
 

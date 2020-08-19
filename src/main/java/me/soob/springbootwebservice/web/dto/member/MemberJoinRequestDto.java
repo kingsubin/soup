@@ -3,10 +3,11 @@ package me.soob.springbootwebservice.web.dto.member;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import me.soob.springbootwebservice.domain.member.Member;
 
 @NoArgsConstructor
-@Getter
+@Getter @Setter
 public class MemberJoinRequestDto {
 
     private String email;

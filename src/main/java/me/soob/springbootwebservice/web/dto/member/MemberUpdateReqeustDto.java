@@ -2,8 +2,11 @@ package me.soob.springbootwebservice.web.dto.member;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Getter
+@NoArgsConstructor
+@Getter @Setter
 public class MemberUpdateReqeustDto {
 
     private String name;

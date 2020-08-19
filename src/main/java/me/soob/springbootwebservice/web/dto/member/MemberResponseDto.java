@@ -1,9 +1,12 @@
 package me.soob.springbootwebservice.web.dto.member;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import me.soob.springbootwebservice.domain.member.Member;
 
-@Getter
+@NoArgsConstructor
+@Getter @Setter
 public class MemberResponseDto {
 
     private Long id;

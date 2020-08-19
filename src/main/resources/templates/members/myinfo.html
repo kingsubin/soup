@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- head -->
+<head th:replace="fragments/common :: head">
+</head>
+
+<body>
+
+<!-- nav menu -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu">
+</nav>
+
+<!-- main -->
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>EMAIL</th>
+            <td th:text="${memberResponseDto.email}"></td>
+        </tr>
+        <tr>
+            <th>NAME</th>
+            <td th:text="${memberResponseDto.name}"></td>
+        </tr>
+        <tr>
+            <th>LEVEL</th>
+            <td th:text="${memberResponseDto.level}"></td>
+        </tr>
+        <tr>
+            <th>LEVEL_POINT</th>
+            <td th:text="${memberResponseDto.levelPoint}"></td>
+        </tr>
+        <tr>
+            <th>CASH_POINT</th>
+            <td th:text="${memberResponseDto.cashPoint}"></td>
+        </tr>
+    </table>
+
+    <div class="text-right">
+        <a type="button" class="btn btn-primary" th:href="@{'/members/myinfo/update/' + ${memberResponseDto.id}}">UPDATE</a>
+        <a type="button" class="btn btn-primary" th:href="@{/}">CANCEL</a>
+    </div>
+
+</div>
+
+<!-- footer -->
+<div class="footer" th:replace="fragments/common :: footer"></div>
+</body>
+
+</html>
